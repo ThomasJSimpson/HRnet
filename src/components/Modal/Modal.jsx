@@ -1,27 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styles from "./styles.module.css";
-import "../../index.css";
 
-export const Modal = ({ isShowing, toggle, modalClass, overlayClass, contentClass, closeBtnClass, iconClass, children }) => {
-  console.log("modalClass", modalClass);
+export const Modal = ({ isShowing, toggle, overlayClass, modalClass, modalHeaderClass, headerBtnClass, headerBtnIconClass, bodyClass, children }) => {
   const mergedModalClass = `${styles.modal} ${modalClass}`;
   const mergedOverlayClass = `${styles.modalOverlay} ${overlayClass}`;
-  const mergedContentClass = `${styles.modalContent} ${contentClass}`;
-  const mergedCloseBtnClass = `${styles.modalCloseBtn} ${closeBtnClass}`;
-  const mergedIconClass = `${styles.icon} ${iconClass}`;
-  console.log("mergedModalClass", mergedModalClass);
-  //Passer un objet avec du style en INLINE et l'ajouter à la suite de className
-  //quand la proposition de style personalisée est OK, installer babel et tout ce qui faut pour upload le comp sur NPM
+  const mergedBodyClass = `${styles.modalBody} ${bodyClass}`;
+  const mergedHeaderClass = `${styles.modalHeader} ${modalHeaderClass}`;
+  const mergedHeaderBtnClass = `${styles.modalHeaderBtn} ${headerBtnClass}`;
+  const mergedHeaderBtnIconClass = `${styles.modalHeaderBtnIcon} ${headerBtnIconClass}`;
 
   return isShowing
     ? ReactDOM.createPortal(
-        <div className={mergedOverlayClass}>
+        <div className={mergedOverlayClass} onClick={(e) => e.target === e.currentTarget && toggle()}>
           <section className={mergedModalClass}>
-            <button onClick={toggle} type="button" className={mergedCloseBtnClass}>
-              <span className={mergedIconClass}>&#x2715;</span>
-            </button>
-            <div className={mergedContentClass}>{children}</div>
+            <div className={mergedHeaderClass}>
+              <button type="button" className={mergedHeaderBtnClass}>
+                <span onClick={toggle} className={mergedHeaderBtnIconClass}>
+                  &#x2715;
+                </span>
+              </button>
+            </div>
+            <div className={mergedBodyClass}>{children}</div>
           </section>
         </div>,
         document.body

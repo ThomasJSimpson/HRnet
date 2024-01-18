@@ -1,13 +1,10 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modalOverlay {
@@ -18,6 +15,8 @@ code {
   height: 100vh;
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
 }
 
 .modal {
@@ -32,9 +31,28 @@ code {
   left: 50%;
   transform: translate(-50%, -50%);
   padding-bottom: 2rem;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
 }
 
-.modalCloseBtn {
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalBody {
+  padding: 0 1rem 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 300px;
+  overflow: auto;
+  overflow-x: hidden;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  scrollbar-width: none;
+}
+
+.modalHeaderBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,34 +61,17 @@ code {
   font-size: 1.4rem;
   font-weight: 700;
   cursor: pointer;
-  position: absolute;
-  right: 0;
-  border-radius: 16px;
   border: 0;
   background-color: transparent;
 }
 
-.modalContent {
-  padding: 2rem 1rem 0;
-  white-space: pre-wrap;
-  word-break: break-word;
-  max-height: 300px;
-  overflow: auto;
-  overflow-x: hidden;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  scrollbar-width: none;
-}
-.modalContent {
-  overflow: auto;
-}
-
-.modalContent::-webkit-scrollbar {
-  display: none;
-}
-.icon {
+.modalHeaderBtnIcon {
   font-size: 18px;
   height: 18px;
   display: flex;
   align-items: center;
+}
+
+.modalBody::-webkit-scrollbar {
+  display: none;
 }

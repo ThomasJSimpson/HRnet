@@ -15,7 +15,7 @@ const EmployeesList = () => {
       // { title: "Last Name", data: "lastName" },
       // { title: "Start Date", data: "startDate" },
       // { title: "Department", data: "department" },
-      // { title: "Date of Birth", data: "birthDate" },
+      // { title: "Date of Birth", data: "dateOf.fo" },
       // { title: "Street", data: "street" },
       // { title: "City", data: "city" },
       // { title: "State", data: "state" },
@@ -43,14 +43,14 @@ const EmployeesList = () => {
         },
       },
       // Colonne d'accessoire (Âge)
-      {
-        header: "Start Date",
-        accessor: "startDate",
-        cell: (props) => {
-          const columnKey = props.column.columnDef.accessor;
-          return <p>{props.row.original[columnKey]}</p>;
-        },
-      },
+      // {
+      //   header: "Start Date",
+      //   accessor: "startDate",
+      //   cell: (props) => {
+      //     const columnKey = props.column.columnDef.accessor;
+      //     return <p>{props.row.original[columnKey]}</p>;
+      //   },
+      // },
       {
         header: "Department",
         accessor: "department",
@@ -59,14 +59,14 @@ const EmployeesList = () => {
           return <p>{props.row.original[columnKey]}</p>;
         },
       },
-      {
-        header: "Date of Birth",
-        accessor: "birthDate",
-        cell: (props) => {
-          const columnKey = props.column.columnDef.accessor;
-          return <p>{props.row.original[columnKey]}</p>;
-        },
-      },
+      // {
+      //   header: "Date of Birth",
+      //   accessor: "dateOfBirth.formattedDate",
+      //   cell: (props) => {
+      //     const columnKey = props.column.columnDef.accessor;
+      //     return <p>{props.row.original[columnKey]}</p>;
+      //   },
+      // },
       {
         header: "Street",
         accessor: "street",

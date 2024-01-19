@@ -1,17 +1,21 @@
-import React from "react";
-import { addEmployee } from "../slices/employeesSlice";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { updateInputFirstName, updateInputLastName, resetInputs, updateInputBirthDate, updateInputStartDate, updateInputDepartment, updateInputAddressStreet, updateInputAddressCity, updateInputAddressZip, updateIsModalOpen } from "../slices/formSlice";
-// updateInputAddressState
-import DatePickerCustom from "../components/DatePicker";
-import { Modal } from "../components/Modal/Modal";
-import useModal from "../components/Modal/useModal";
+import { Modal } from "react-modal-jkf";
+import { useModal } from "react-modal-jkf";
+import Select from "react-select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { addEmployee } from "../slices/employeesSlice";
+import { updateInputFirstName, updateInputLastName, resetInputs, updateInputDateOfBirth, updateInputStartDate, updateInputDepartment, updateInputAddressStreet, updateInputAddressCity, updateInputAddressZip, updateInputAddressState } from "../slices/formSlice";
+import departments from "../data/departments";
+import states from "../data/states";
 
 const Form = () => {
   const form = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const { isShowing, toggle } = useModal();
+  const [reloadKey, setReloadKey] = useState(0);
 
   const saveEmployee = () => {
     const dataEmployees = JSON.parse(localStorage.getItem("employees")) || [];
@@ -19,23 +23,27 @@ const Form = () => {
     localStorage.setItem("employees", JSON.stringify(dataEmployees));
     dispatch(addEmployee(form));
     toggle();
-  };
-  const handleModal = () => {
-    dispatch(updateIsModalOpen(false));
     dispatch(resetInputs());
+    setReloadKey((prevKey) => prevKey + 1);
   };
-  // console.log(form.isModalOpen);
-  // console.log(form.date);
+
+  const handleStartDate = (date) => {
+    dispatch(updateInputStartDate(date.toISOString()));
+  };
+
+  const handleDateOfBirth = (date) => {
+    dispatch(updateInputDateOfBirth(date.toISOString()));
+  };
+
   return (
-    <>
+    <div>
       <div className="title">
         <h1>HRnet</h1>
-        {/* <Modal text={"LETS GOOOOWWW"} /> */}
       </div>
       <div className="container">
         <Link to={"/employee-list"}>View Current Employees</Link>
         <h2>Create Employee</h2>
-        <form action="#" id="create-employee">
+        <form key={reloadKey} action="#" id="create-employee">
           <label htmlFor="first-name">First Name</label>
           <input type="text" id="first-name" onChange={(e) => dispatch(updateInputFirstName(e.target.value))} value={form.firstName} required />
 
@@ -43,12 +51,10 @@ const Form = () => {
           <input type="text" id="last-name" onChange={(e) => dispatch(updateInputLastName(e.target.value))} value={form.lastName} required />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          {/* <input type="text" onChange={(e) => dispatch(updateInputBirthDate(e.target.value))} value={form.birthDate} required /> */}
+          <DatePicker id={"date-of-birth"} selected={new Date(form.dateOfBirth.date)} onChange={handleDateOfBirth} showMonthDropdown showYearDropdown scrollableYearDropdown required />
 
-          <DatePickerCustom id={"date-of-birth"} date={form.birthDate} updateInputDate={updateInputBirthDate} />
           <label htmlFor="start-date">Start Date</label>
-          {/* <input id="start-date" type="text" onChange={(e) => dispatch(updateInputStartDate(e.target.value))} value={form.startDate} required /> */}
-          <DatePickerCustom id={"start-date"} date={form.startDate} updateInputDate={updateInputStartDate} />
+          <DatePicker selected={new Date(form.startDate.date)} onChange={handleStartDate} showMonthDropdown showYearDropdown scrollableYearDropdown required />
 
           <fieldset className="address">
             <legend>Address</legend>
@@ -59,41 +65,39 @@ const Form = () => {
             <label htmlFor="city">City</label>
             <input id="city" type="text" onChange={(e) => dispatch(updateInputAddressCity(e.target.value))} value={form.city} required />
 
-            {/* <label htmlFor="state">State</label>
-            <select name="state" id="state"></select> */}
+            <label htmlFor="state">State</label>
+            <Select
+              defaultValue={form.state}
+              onChange={(e) => {
+                console.log(e);
+                dispatch(updateInputAddressState(e.label));
+              }}
+              options={states}
+            />
 
             <label htmlFor="zip-code">Zip Code</label>
             <input id="zip-code" type="number" onChange={(e) => dispatch(updateInputAddressZip(e.target.value))} value={form.zipCode} required />
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select name="department" id="department" onChange={(e) => dispatch(updateInputDepartment(e.target.value))} value={form.department} required>
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          <Select
+            defaultValue={form.department}
+            onChange={(e) => {
+              console.log(e);
+              dispatch(updateInputDepartment(e.label));
+            }}
+            options={departments}
+          />
         </form>
-        <button onClick={saveEmployee}>Save</button>
+        <button className="save-btn" onClick={saveEmployee}>
+          Save
+        </button>
       </div>
-      {/* <div>
-        <button onClick={toggle}>Open Modal</button>
-        <Modal element={<MyComponentContent />} isShowing={isShowing} toggle={toggle} />
-      </div> */}
-      {/* <Modal isModalOpen={form.isModalOpen} handleModal={handleModal}>
-        <p>Modal Content</p>
-      </Modal> */}
 
       <Modal isShowing={isShowing} toggle={toggle} overlayClass={"modal-overlay"} modalClass={"modal"} headerBtnIconClass={"modal-header-btn-icon"} modalHeaderClass={"modal-header"} headerBtnClass={"modal-header-btn"} bodyClass={"modal-body"}>
-        {/* <p>
-          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-          quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-          quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-        </p> */}
         <p>Employee created!</p>
       </Modal>
-    </>
+    </div>
   );
 };
 

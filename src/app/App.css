@@ -67,7 +67,12 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+input {
+  width: 145px;
+  height: 36px;
+  font-family: "Times", serif;
+  padding: 4px 8px;
+}
 label {
   display: block;
   margin-top: 1rem;
@@ -107,7 +112,10 @@ tfoot {
 tfoot th {
   font-weight: normal;
 }
-
+.save-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .modal-overlay {
 }
 .modal {

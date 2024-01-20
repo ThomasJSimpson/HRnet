@@ -4,13 +4,8 @@ import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-tabl
 function Table({ dataEmployees }) {
   const data = dataEmployees.data;
   const columns = dataEmployees.columns;
-  console.log(data);
-
   const options = { columns, data, getCoreRowModel: getCoreRowModel() };
-  // console.log(options);
   const table = useReactTable(options);
-  // console.log(table.getRowModel());
-  // console.log(table.getRowModel().rows[0]);
 
   return (
     <table className="test">
@@ -27,7 +22,7 @@ function Table({ dataEmployees }) {
       </thead>
       <tbody>
         {table.getRowModel().rows.map((row) => {
-          console.log(row.getVisibleCells());
+          // console.log(row.getVisibleCells());
           return (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => {

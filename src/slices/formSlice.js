@@ -1,21 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import dateIsoConverter from "../utils/dateIsoConverterUtils";
 
 const initialState = {
   firstName: "",
   lastName: "",
-  dateOfBirth: {
-    date: new Date().toISOString(),
-    formattedDate: dateIsoConverter(new Date().toISOString()),
-  },
-  startDate: {
-    date: new Date().toISOString(),
-    formattedDate: dateIsoConverter(new Date().toISOString()),
-  },
+  dateOfBirth: new Date().toISOString(),
+  startDate: new Date().toISOString(),
   department: null,
   street: "",
   city: "",
   state: null,
+  stateAbbrev: null,
   zipCode: "",
 };
 
@@ -34,13 +28,11 @@ export const formInputSlice = createSlice({
     },
 
     updateInputDateOfBirth: (state, action) => {
-      state.dateOfBirth.date = action.payload;
-      state.dateOfBirth.formattedDate = dateIsoConverter(action.payload);
+      state.dateOfBirth = action.payload;
     },
 
     updateInputStartDate: (state, action) => {
-      state.startDate.date = action.payload;
-      state.startDate.formattedDate = dateIsoConverter(action.payload);
+      state.startDate = action.payload;
     },
 
     updateInputDepartment: (state, action) => {
@@ -56,7 +48,10 @@ export const formInputSlice = createSlice({
     },
 
     updateInputAddressState: (state, action) => {
-      state.state = action.payload;
+      console.log("action.payload", action.payload);
+
+      state.stateAbbrev = action.payload.abbreviation;
+      state.state = action.payload.label;
     },
 
     updateInputAddressZip: (state, action) => {

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Modal } from "react-modal-jkf";
-import { useModal } from "react-modal-jkf";
+import { Modal, useModal } from "react-modal-jkf";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "react-modal-jkf/dist/index.css";
 import { addEmployee } from "../slices/employeesSlice";
 import { updateInputFirstName, updateInputLastName, resetInputs, updateInputDateOfBirth, updateInputStartDate, updateInputDepartment, updateInputAddressStreet, updateInputAddressCity, updateInputAddressZip, updateInputAddressState } from "../slices/formSlice";
 import departments from "../data/departments";
 import states from "../data/states";
+import { isValid, parseISO } from "date-fns";
 
 const Form = () => {
   const form = useSelector((state) => state.form);
@@ -18,21 +19,24 @@ const Form = () => {
   const [reloadKey, setReloadKey] = useState(0);
 
   const saveEmployee = () => {
-    const dataEmployees = JSON.parse(localStorage.getItem("employees")) || [];
-    dataEmployees.push(form);
-    localStorage.setItem("employees", JSON.stringify(dataEmployees));
     dispatch(addEmployee(form));
     toggle();
     dispatch(resetInputs());
     setReloadKey((prevKey) => prevKey + 1);
   };
 
-  const handleStartDate = (date) => {
-    dispatch(updateInputStartDate(date.toISOString()));
+  const handleStartDate = (dateString) => {
+    const date = dateString && parseISO(dateString.toISOString());
+    if (isValid(date)) {
+      dateString && dispatch(updateInputStartDate(dateString.toISOString()));
+    } else {
+      alert("La date de début est invalide.");
+    }
+    // date && dispatch(updateInputStartDate(date.toISOString()));
   };
 
   const handleDateOfBirth = (date) => {
-    dispatch(updateInputDateOfBirth(date.toISOString()));
+    date && dispatch(updateInputDateOfBirth(date.toISOString()));
   };
 
   return (
@@ -51,10 +55,10 @@ const Form = () => {
           <input type="text" id="last-name" onChange={(e) => dispatch(updateInputLastName(e.target.value))} value={form.lastName} required />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <DatePicker id={"date-of-birth"} selected={new Date(form.dateOfBirth.date)} onChange={handleDateOfBirth} showMonthDropdown showYearDropdown scrollableYearDropdown required />
+          <DatePicker id={"date-of-birth"} selected={new Date(form.dateOfBirth)} onSelect={handleDateOfBirth} onBlur={handleDateOfBirth} showMonthDropdown showYearDropdown scrollableYearDropdown required />
 
           <label htmlFor="start-date">Start Date</label>
-          <DatePicker selected={new Date(form.startDate.date)} onChange={handleStartDate} showMonthDropdown showYearDropdown scrollableYearDropdown required />
+          <DatePicker selected={new Date(form.startDate)} onSelect={handleStartDate} onBlur={handleStartDate} showMonthDropdown showYearDropdown scrollableYearDropdown required />
 
           <fieldset className="address">
             <legend>Address</legend>
@@ -69,8 +73,8 @@ const Form = () => {
             <Select
               defaultValue={form.state}
               onChange={(e) => {
-                console.log(e);
-                dispatch(updateInputAddressState(e.label));
+                const newState = e;
+                dispatch(updateInputAddressState(newState));
               }}
               options={states}
             />
@@ -83,7 +87,6 @@ const Form = () => {
           <Select
             defaultValue={form.department}
             onChange={(e) => {
-              console.log(e);
               dispatch(updateInputDepartment(e.label));
             }}
             options={departments}

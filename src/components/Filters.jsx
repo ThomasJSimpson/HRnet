@@ -1,15 +1,9 @@
 import React from "react";
-const Filters = ({ columnFilters, setColumnFilters }) => {
-  // console.log(columnFilters);
-
-  const firstName = columnFilters.find((f) => f.id === "firstName")?.value || "";
-
-  const onFilterChange = (id, value) => setColumnFilters((prev) => prev.filter((f) => f.id !== id).concat({ id, value }));
-
+const Filters = ({ filtering, setFiltering }) => {
   return (
     <div className="search-bar">
       <p>Search:</p>
-      <input type="text" value={firstName} onChange={(e) => onFilterChange("firstName", e.target.value)}></input>
+      <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input>
     </div>
   );
 };

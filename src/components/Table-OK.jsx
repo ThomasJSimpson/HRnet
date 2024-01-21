@@ -1,31 +1,69 @@
 import * as React from "react";
 import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel } from "@tanstack/react-table";
+import isoToDateToStringConverter from "../utils/isoToDateToStringConverter";
 import Filters from "./Filters";
 
-function Table({ employeesData, columns }) {
+function Table({ employeesData, columnsData }) {
   const data = employeesData;
+  const columns = columnsData.map((column) => {
+    return {
+      header: column.title,
+      accessorKey: column.data,
+      cell: (props) => {
+        // console.log(props);
+        const columnKey = props.column.columnDef.accessorKey;
+        if (columnKey === "dateOfBirth" || columnKey === "startDate") {
+          return <p>{isoToDateToStringConverter(props.getValue())}</p>;
+        }
+        return <p>{props.getValue()}</p>;
+      },
+    };
+  });
 
-  const [filtering, setFiltering] = React.useState("");
+  // const ColumnFiltersState = [
+  //   columnsData.map((column) => {
+  //     console.log(column.data);
+  //     const test = { id: column.data, value: "aze" };
+  //     console.log(test);
+  //     return test;
+  //   }),
+  // ];
+  const ColumnFiltersState = [
+    // { id: "firstName", value: "aze" },
+    // { id: "lastName", value: "aze" },
+    // { id: "startDate", value: "aze" },
+    // { id: "department", value: "aze" },
+    // { id: "dateOfBirth", value: "aze" },
+    // { id: "street", value: "aze" },
+    // { id: "city", value: "aze" },
+    // { id: "stateAbbrev", value: "aze" },
+    // { id: "zipCode", value: "aze" },
+  ];
+  // const filtersTableState = {
+  //   columnFilters: ColumnFiltersState,
+  //   globalFilter: null,
+  // };
+
+  // console.log(filtersTableState);
+
+  // eslint-disable-next-line no-unused-vars
+  const [columnFilters, setColumnFilters] = React.useState([]);
 
   const table = useReactTable({
     columns,
     data,
+    state: {
+      columnFilters,
+    },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    state: {
-      globalFilter: filtering,
-    },
-    onGlobalFilterChange: setFiltering,
   });
-
-  console.log("rendu avant le return Table ");
-
+  console.log(columnFilters);
   return (
     <>
       <div className="full-table">
         <section className="header-table">
-          {/* <Filters columnFilters={columnFilters} setColumnFilters={setColumnFilters} /> */}
-          <Filters filtering={filtering} setFiltering={setFiltering} />
+          <Filters columnFilters={columnFilters} setColumnFilters={setColumnFilters} />
         </section>
         <table className="body-table" w={table.getTotalSize()}>
           <thead>

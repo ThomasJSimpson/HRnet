@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Table from "../components/Table copy";
-import isoToDateToStringConverter from "../utils/isoToDateToStringConverter";
+
 import { Link } from "react-router-dom";
 
 const EmployeesList = () => {
@@ -18,32 +18,26 @@ const EmployeesList = () => {
     { title: "Zip Code", data: "zipCode" },
   ];
 
-  const data = {
-    data: employees,
-    columns: columns.map((column) => {
-      return {
-        header: column.title,
-        accessor: column.data,
-        cell: (props) => {
-          const columnKey = props.column.columnDef.accessor;
-          if (columnKey === "dateOfBirth" || columnKey === "startDate") {
-            return <p>{isoToDateToStringConverter(props.row.original[columnKey])}</p>;
-          }
-          return <p>{props.row.original[columnKey]}</p>;
-          // <p>{props.getValue()}</p>;
-        },
-      };
-    }),
-  };
+  // const filters = [
+  //   columns.map((column) => {
+  //     return {
+  //       id: column.data,
+  //       value: "",
+  //     };
+  //   }),
+  // ];
+  // console.log(filters);
+  // const [columnsFilters, setColumnsFilters] = React.useState(filters);
+  // columnsFilters={columnsFilters} setColumnsFilters={setColumnsFilters}
 
   return (
-    <>
+    <div className="table-page">
       <h1>Current Employees</h1>
       <div className="table-container">
-        <Table dataEmployees={data} />
+        <Table employeesData={employees} columnsData={columns} />
         <Link to={"/"}>Home</Link>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -159,3 +159,11 @@ tfoot th {
 .search-bar {
   display: flex;
 }
+
+.header-table-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-table-cell-icon {
+}

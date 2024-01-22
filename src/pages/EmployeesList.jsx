@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Table from "../components/Table copy";
-import isoToDateToStringConverter from "../utils/isoToDateToStringConverter";
-
+import Table from "../components/Table";
 import { Link } from "react-router-dom";
 
 const EmployeesList = () => {
@@ -18,25 +16,12 @@ const EmployeesList = () => {
     { title: "State", data: "stateAbbrev" },
     { title: "Zip Code", data: "zipCode" },
   ];
-  // const filters = [
-  //   columns.map((column) => {
-  //     return {
-  //       id: column.data,
-  //       value: "",
-  //     };
-  //   }),
-  // ];
-  // console.log(filters);
-  // const [columnsFilters, setColumnsFilters] = React.useState(filters);
-  // columnsFilters={columnsFilters} setColumnsFilters={setColumnsFilters}
-  const columnsData = columns.map((column) => {
-    console.log("rendu EmployeList-->columns.map");
 
+  const columnsData = columns.map((column) => {
     return {
       header: column.title,
       accessorKey: column.data,
       cell: (props) => {
-        // console.log(props);
         const columnKey = props.column.columnDef.accessorKey;
         if (columnKey === "dateOfBirth" || columnKey === "startDate") {
           console.log(props.row.original[columnKey].formattedDate);

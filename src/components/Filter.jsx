@@ -1,13 +1,13 @@
 import React from "react";
-const Filters = ({ filtering, setFiltering }) => {
+const Filter = ({ globalFilter, setGlobalFilter }) => {
   return (
     <div className="search-bar">
       <p>Search:</p>
-      <input type="text" value={filtering} onChange={(e) => setFiltering(e.target.value)}></input>
+      <input type="text" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value.trim())}></input>
     </div>
   );
 };
-export default Filters;
+export default Filter;
 // Ce composant est une barre de recherche qui permet de filtrer une colonne spécifique d'un tableau de données. Voici comment il fonctionne :
 
 // Props : Le composant prend deux props : columnFilters et setColumnFilters. columnFilters est un tableau d'objets où chaque objet représente un filtre appliqué à une colonne. setColumnFilters est une fonction qui permet de mettre à jour les filtres.

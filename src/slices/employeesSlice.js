@@ -14,18 +14,6 @@ const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "
 const departments = ["HR", "IT", "Finance", "Marketing", "Sales", "Logistics", "R&D", "Customer Service", "Legal", "Operations"];
 const states = ["California", "New York", "Texas", "Florida", "Pennsylvania", "Illinois", "Ohio", "Georgia", "North Carolina", "Michigan"];
 
-function formatDate(date) {
-  let d = new Date(date),
-    month = "" + (d.getMonth() + 1),
-    day = "" + d.getDate(),
-    year = d.getFullYear();
-
-  if (month.length < 2) month = "0" + month;
-  if (day.length < 2) day = "0" + day;
-
-  return [month, day, year].join("/");
-}
-
 function createRandomEmployee() {
   let firstName = getRandomElement(firstNames);
   let lastName = getRandomElement(lastNames);
@@ -44,10 +32,8 @@ function createRandomEmployee() {
   return {
     firstName,
     lastName,
-    dateOfBirthObj: new Date(dateOfBirth).toISOString(),
-    dateOfBirthFormat: formatDate(dateOfBirth),
-    startDateObj: new Date(startDate).toISOString(),
-    startDateFormat: formatDate(startDate),
+    dateOfBirth: new Date(dateOfBirth).toISOString(),
+    startDate: new Date(startDate).toISOString(),
     department,
     street: `Street ${Math.floor(Math.random() * 100)}`,
     city: `City ${Math.floor(Math.random() * 100)}`,

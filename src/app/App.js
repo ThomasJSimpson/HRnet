@@ -1,5 +1,5 @@
-import Form from "../pages/Form.jsx";
-import EmployeesList from "../pages/EmployeesList.jsx";
+import FormPage from "../pages/FormPage.jsx";
+import EmployeePage from "../pages/EmployeePage.jsx";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -7,8 +7,8 @@ import "./App.css";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Form />} />
-      <Route path="/employee-list" element={<EmployeesList />} />
+      <Route path="/" element={<FormPage />} />
+      <Route path="/employee-list" element={<EmployeePage />} />
     </Routes>
   );
 }

@@ -2,15 +2,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Table from "../components/Table";
 import { Link } from "react-router-dom";
-
-const EmployeesList = () => {
+import isoToDateToStringConverter from "../utils/isoToDateToStringConverter";
+const EmployeePage = () => {
   const employees = useSelector((state) => state.employees);
   const columns = [
     { title: "First Name", data: "firstName" },
     { title: "Last Name", data: "lastName" },
-    { title: "Start Date", data: "startDateFormat" },
+    { title: "Start Date", data: "startDate" },
     { title: "Department", data: "department" },
-    { title: "Date of Birth", data: "dateOfBirthFormat" },
+    { title: "Date of Birth", data: "dateOfBirth" },
     { title: "Street", data: "street" },
     { title: "City", data: "city" },
     { title: "State", data: "stateAbbrev" },
@@ -24,14 +24,13 @@ const EmployeesList = () => {
       cell: (props) => {
         const columnKey = props.column.columnDef.accessorKey;
         if (columnKey === "dateOfBirth" || columnKey === "startDate") {
-          console.log(props.row.original[columnKey].formattedDate);
-          return <p>{props.row.original[columnKey].formattedDate}</p>;
+          return <p>{isoToDateToStringConverter(props.row.original[columnKey])}</p>;
         }
         return <p>{props.getValue()}</p>;
       },
     };
   });
-  console.log("rendu dans EmployeesList");
+  console.log("rendu dans EmployeePage");
 
   return (
     <div className="table-page">
@@ -44,4 +43,4 @@ const EmployeesList = () => {
   );
 };
 
-export default EmployeesList;
+export default EmployeePage;

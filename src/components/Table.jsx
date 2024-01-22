@@ -2,6 +2,8 @@ import * as React from "react";
 import { useReactTable, getCoreRowModel, flexRender, getFilteredRowModel, getSortedRowModel, getPaginationRowModel } from "@tanstack/react-table";
 import Filter from "./Filter";
 import EntriesNumberSetter from "./EntriesNumberSetter";
+import Pagination from "./Pagination";
+import EntriesInfos from "./EntriesInfos";
 function Table({ employeesData, columns }) {
   const data = employeesData;
 
@@ -36,7 +38,7 @@ function Table({ employeesData, columns }) {
     <>
       <div className="full-table">
         <section className="header-table">
-          <EntriesNumberSetter pageSize={pagination.pageSize} setPageSize={table.setPageSize}></EntriesNumberSetter>
+          <EntriesNumberSetter table={table} pageSize={pagination.pageSize} setPageSize={table.setPageSize} />
           <Filter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
         </section>
         <table className="body-table" w={table.getTotalSize()}>
@@ -53,7 +55,7 @@ function Table({ employeesData, columns }) {
                             <span>{header.column.getIsSorted() === "asc" ? <span>&uarr;</span> : <span>&darr;</span>}</span>
                           ) : (
                             <span>
-                              &darr; <span>&uarr;</span>
+                              &uarr; <span>&darr;</span>
                             </span>
                           )}
                         </div>
@@ -80,27 +82,8 @@ function Table({ employeesData, columns }) {
             })}
           </tbody>
         </table>
-        <div className="pagination">
-          <p>
-            Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-          </p>
-          <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-            {"<"}
-          </button>
-          {Array.from({ length: table.getPageCount() }, (_, i) => (
-            <button key={i} onClick={() => table.setPageIndex(i)} disabled={table.getState().pagination.pageIndex === i}>
-              {i + 1}
-            </button>
-          ))}
-          <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-            {">"}
-          </button>
-        </div>
-        <div className="entries-info">
-          <p>
-            Showing {table.getRowModel().rows.length} of {table.getFilteredRowModel().rows.length} entries
-          </p>
-        </div>
+        <Pagination table={table} />
+        <EntriesInfos table={table} />
       </div>
     </>
   );

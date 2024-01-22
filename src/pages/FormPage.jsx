@@ -10,9 +10,8 @@ import { addEmployee } from "../slices/employeesSlice";
 import { updateInputFirstName, updateInputLastName, resetInputs, updateInputDateOfBirth, updateInputStartDate, updateInputDepartment, updateInputAddressStreet, updateInputAddressCity, updateInputAddressZip, updateInputAddressState } from "../slices/formSlice";
 import departments from "../data/departments";
 import states from "../data/states";
-import { isValid, parseISO } from "date-fns";
 
-const Form = () => {
+const FormPage = () => {
   const form = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const { isShowing, toggle } = useModal();
@@ -25,18 +24,28 @@ const Form = () => {
     setReloadKey((prevKey) => prevKey + 1);
   };
 
-  const handleStartDate = (dateString) => {
-    const date = dateString && parseISO(dateString.toISOString());
-    if (isValid(date)) {
-      dateString && dispatch(updateInputStartDate(dateString.toISOString()));
-    } else {
-      alert("La date de début est invalide.");
+  const handleDateOfBirth = (date) => {
+    if (date) {
+      console.log(date);
+      function isDateValid(date, minYear, maxYear) {
+        const year = date.getFullYear();
+        return year >= minYear && year <= maxYear;
+      }
+      const isValid = isDateValid(date, 1900, 2100);
+      isValid ? dispatch(updateInputDateOfBirth(date.toISOString())) : alert("La date de naissance est invalide.");
     }
-    // date && dispatch(updateInputStartDate(date.toISOString()));
   };
 
-  const handleDateOfBirth = (date) => {
-    date && dispatch(updateInputDateOfBirth(date.toISOString()));
+  const handleStartDate = (date) => {
+    if (date) {
+      console.log(date);
+      function isDateValid(date, minYear, maxYear) {
+        const year = date.getFullYear();
+        return year >= minYear && year <= maxYear;
+      }
+      const isValid = isDateValid(date, 1900, 2100);
+      isValid ? dispatch(updateInputStartDate(date.toISOString())) : alert("La date de démarrage est invalide.");
+    }
   };
 
   return (
@@ -55,10 +64,10 @@ const Form = () => {
           <input type="text" id="last-name" onChange={(e) => dispatch(updateInputLastName(e.target.value))} value={form.lastName} required />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <DatePicker id={"date-of-birth"} selected={new Date(form.dateOfBirth)} onSelect={handleDateOfBirth} onBlur={handleDateOfBirth} showMonthDropdown showYearDropdown scrollableYearDropdown required />
+          <DatePicker id={"date-of-birth"} selected={new Date(form.dateOfBirth)} onChange={handleDateOfBirth} showMonthDropdown showYearDropdown scrollableYearDropdown required />
 
           <label htmlFor="start-date">Start Date</label>
-          <DatePicker selected={new Date(form.startDate)} onSelect={handleStartDate} onBlur={handleStartDate} showMonthDropdown showYearDropdown scrollableYearDropdown required />
+          <DatePicker id={"start-date"} selected={new Date(form.startDate)} onChange={handleStartDate} showMonthDropdown showYearDropdown scrollableYearDropdown required />
 
           <fieldset className="address">
             <legend>Address</legend>
@@ -104,4 +113,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormPage;

@@ -3,7 +3,7 @@ const Pagination = ({ table }) => {
     <>
       <div className="pagination">
         <p>
-          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount() === 0 ? table.getPageCount() + 1 : table.getPageCount()}
         </p>
         <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
           {"<"}

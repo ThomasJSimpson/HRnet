@@ -48,8 +48,6 @@ export const formInputSlice = createSlice({
     },
 
     updateInputAddressState: (state, action) => {
-      console.log("action.payload", action.payload);
-
       state.stateAbbrev = action.payload.abbreviation;
       state.state = action.payload.label;
     },

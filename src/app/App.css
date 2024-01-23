@@ -13,7 +13,16 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.label-input {
+}
+.label-datepicker {
+}
 .title {
   display: flex;
   align-items: center;
@@ -27,17 +36,28 @@ body {
   justify-content: center;
 }
 
-input {
+/* input {
   width: 145px;
   height: 36px;
   font-family: "Times", serif;
   padding: 4px 8px;
-}
-
+} */
 label {
   display: block;
   margin-top: 1rem;
   margin-bottom: 10px;
+}
+
+input {
+  font-family: "Times", serif;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-shadow: none;
+  height: 20px;
+  width: 200px;
+  background-color: inherit;
+  padding: 8px;
 }
 
 .address {

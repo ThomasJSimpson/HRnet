@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   firstName: "",
   lastName: "",
-  dateOfBirth: new Date().toISOString(),
-  startDate: new Date().toISOString(),
+  dateOfBirth: null,
+  startDate: null,
   department: null,
   street: "",
   city: "",

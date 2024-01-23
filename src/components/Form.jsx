@@ -45,9 +45,9 @@ export default function Form() {
 
         <LabelInput htmlForId={"last-name"} labelChild={"Last Name"} type={"text"} onChange={(e) => dispatch(updateInputLastName(e.target.value))} value={form.lastName} isRequired={true} />
 
-        <LabelDatePicker htmlForId={"date-of-birth"} labelChild={"Date of Birth"} onChange={handleDateOfBirth} selected={new Date(form.dateOfBirth)} isRequired={true} />
+        <LabelDatePicker htmlForId={"date-of-birth"} labelChild={"Date of Birth"} onChange={handleDateOfBirth} selected={form.dateOfBirth ? new Date(form.dateOfBirth) : null} isRequired={true} />
 
-        <LabelDatePicker htmlForId={"start-date"} labelChild={"Start Date"} onChange={handleStartDate} selected={new Date(form.startDate)} isRequired={true} />
+        <LabelDatePicker htmlForId={"start-date"} labelChild={"Start Date"} onChange={handleStartDate} selected={form.startDate ? new Date(form.startDate) : null} isRequired={true} />
 
         <fieldset className="address">
           <legend>Address</legend>

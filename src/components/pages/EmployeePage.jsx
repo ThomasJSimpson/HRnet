@@ -13,7 +13,11 @@ const EmployeePage = () => {
       <h1>Current Employees</h1>
       <div className="table-container">
         <Table employeesData={employees} columns={columnsData} />
-        <Link to={"/"}>Home</Link>
+        <div className="table-page-link">
+          <Link to={"/"} style={{ textDecoration: "none", color: "inherit", fontSize: "18px", cursor: "pointer", fontWeight: "bold" }}>
+            Home
+          </Link>
+        </div>
       </div>
     </div>
   );

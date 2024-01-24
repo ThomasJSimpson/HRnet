@@ -1,9 +1,12 @@
 import React from "react";
+import Input from "./common/Input";
+import Label from "./common/Label";
+
 const Filter = ({ globalFilter, setGlobalFilter }) => {
   return (
-    <div className="search-bar">
-      <p>Search:</p>
-      <input type="text" value={globalFilter} onChange={(e) => setGlobalFilter(e.target.value.trim())}></input>
+    <div className="filter">
+      <Label htmlFor={"filter"} labelChild={"Search :"} />
+      <Input type="text" id="filter" onChange={(e) => setGlobalFilter(e.target.value.trim())} value={globalFilter} />
     </div>
   );
 };

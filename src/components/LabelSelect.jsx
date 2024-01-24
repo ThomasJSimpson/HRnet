@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "react-select";
+import Label from "./common/Label";
 
 const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChild, onChange, defaultValue, options }) => {
   const customStyles = {
@@ -10,12 +11,11 @@ const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChi
       borderRadius: "4px",
       boxShadow: "none",
       height: "20px",
-      width: htmlForId === "department" ? "" : "100%",
+      width: htmlForId === "department" ? "218px" : "100%",
       backgroundColor: "inehrit",
       ":hover": {
         border: "1px solid black",
       },
-      marginBottom: "20px",
     }),
 
     placeholder: (provided, state) => ({
@@ -33,17 +33,14 @@ const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChi
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? "#ccc" : state.isFocused ? "#eee" : "#fff",
-      color: "black",
+      backgroundColor: state.isSelected ? "#0C8E0C" : state.isFocused ? "#0FBF0F" : "#fff",
+      color: state.isSelected ? "#fff" : state.isFocused ? "#fff" : "black",
     }),
   };
-
   return (
     <div className={labelSelectClassName}>
-      <label className={labelClassName} htmlFor={htmlForId}>
-        {labelChild}
-      </label>
-      <Select styles={customStyles} defaultValue={defaultValue} onChange={onChange} options={options} />
+      <Label className={labelClassName} htmlFor={htmlForId} labelChild={labelChild} />
+      <Select id={htmlForId} styles={customStyles} defaultValue={defaultValue} onChange={onChange} options={options} />
     </div>
   );
 };

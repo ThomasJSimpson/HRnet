@@ -325,7 +325,7 @@ const mockedEmployees = [
 // const initialState = JSON.parse(localStorage.getItem("employees")) || mockedEmployees;
 
 let employees = [];
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 500; i++) {
   employees.push(createRandomEmployee());
 }
 

@@ -1,23 +1,11 @@
+import PaginationCounter from "./common/PaginationCounter";
+import ButtonsNavPages from "./ButtonsNavPages";
+
 const Pagination = ({ table }) => {
   return (
-    <>
-      <div className="pagination">
-        <p>
-          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount() === 0 ? table.getPageCount() + 1 : table.getPageCount()}
-        </p>
-        <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-          {"<"}
-        </button>
-        {Array.from({ length: table.getPageCount() }, (_, i) => (
-          <button key={i} onClick={() => table.setPageIndex(i)} disabled={table.getState().pagination.pageIndex === i}>
-            {i + 1}
-          </button>
-        ))}
-        <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-          {">"}
-        </button>
-      </div>
-    </>
+    <div className="pagination">
+      <ButtonsNavPages table={table} />
+    </div>
   );
 };
 export default Pagination;

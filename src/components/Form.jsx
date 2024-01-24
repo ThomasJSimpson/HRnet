@@ -10,26 +10,24 @@ import isDateValid from "../utils/isDateValid";
 import LabelInput from "./LabelInput";
 import LabelDatePicker from "./LabelDatePicker";
 import LabelSelect from "./LabelSelect";
+import Button from "./common/Button";
 
 export default function Form() {
   const form = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const [reloadKey, setReloadKey] = useState(0);
   const { isShowing, toggle } = useModal();
+  const currentYear = new Date().getFullYear();
+  const isValid = (date) => isDateValid(date, 1900, currentYear);
 
   const handleDateOfBirth = (date) => {
-    if (date) {
-      const isValid = isDateValid(date, 1900, 2100);
-      isValid ? dispatch(updateInputDateOfBirth(date.toISOString())) : alert("Date of birth is invalid.");
-    }
+    date && isValid(date) ? dispatch(updateInputDateOfBirth(date.toISOString())) : alert("Date of birth is invalid.");
   };
 
   const handleStartDate = (date) => {
-    if (date) {
-      const isValid = isDateValid(date, 1900, 2100);
-      isValid ? dispatch(updateInputStartDate(date.toISOString())) : alert("Start date is invalid.");
-    }
+    date && isValid(date) ? dispatch(updateInputStartDate(date.toISOString())) : alert("Start date is invalid.");
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(addEmployee(form));
@@ -82,10 +80,9 @@ export default function Form() {
           defaultValue={form.department}
           options={departments}
         />
-
-        <button className="submit-button" type="submit">
+        <Button className={"submit-button"} type={"submit"}>
           Save
-        </button>
+        </Button>
       </form>
 
       <Modal isShowing={isShowing} toggle={toggle} overlayClass={"modal-overlay"} modalClass={"modal"} headerBtnIconClass={"modal-header-btn-icon"} modalHeaderClass={"modal-header"} headerBtnClass={"modal-header-btn"} bodyClass={"modal-body"}>

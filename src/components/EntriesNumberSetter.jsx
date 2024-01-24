@@ -1,21 +1,14 @@
 import React from "react";
+import getMaxOptionsChoices from "../utils/getMaxOptionsChoices";
+import LabelSelect from "./LabelSelect";
+import getPageSizeNumber from "../utils/getPageSizeNumber";
 
 const EntriesNumberSetter = ({ table }) => {
-  const maxRowsFilteredDecimal = table.getFilteredRowModel().rows.length === 0 ? 1 : table.getFilteredRowModel().rows.length / 10;
-  const optionsChoicesNumber = Math.ceil(maxRowsFilteredDecimal);
+  const optionsChoicesNumber = getMaxOptionsChoices(table);
+  const options = getPageSizeNumber(optionsChoicesNumber);
+  const pageSize = table.getState().pagination.pageSize;
 
-  return (
-    <div>
-      <label htmlFor="pageSize">Page Size:</label>
-      <select id="pageSize" value={table.getState().pagination.pageSize} onChange={(e) => table.setPageSize(e.target.value)}>
-        {[...Array(optionsChoicesNumber)].map((_, index) => (
-          <option key={index} value={(index + 1) * 10}>
-            {(index + 1) * 10}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+  return <LabelSelect defaultValue={pageSize} labelSelectClassName={"page-size"} htmlFor={"pageSize"} onChange={(e) => table.setPageSize(e.value)} labelChild={"Page Size :"} options={options} />;
 };
 
 export default EntriesNumberSetter;

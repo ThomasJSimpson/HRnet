@@ -20,9 +20,16 @@ form {
   justify-content: center;
 }
 .label-input {
+  margin-bottom: 20px;
 }
 .label-datepicker {
+  margin-bottom: 20px;
 }
+
+.label-select {
+  margin-bottom: 20px;
+}
+
 .title {
   display: flex;
   align-items: center;
@@ -64,19 +71,45 @@ input {
   margin-top: 10px;
 }
 
-.table-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 3rem;
+/* Style pour le conteneur du formulaire */
+#form-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.table-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* Style pour chaque label du formulaire */
+.form-field-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Style pour chaque champ du formulaire */
+.form-field {
+  /* margin-bottom: 20px; */
+}
+
+/* Style pour le bouton de soumission */
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
 }
 
 table {
@@ -111,11 +144,21 @@ tfoot th {
   display: flex;
   flex-direction: column;
 }
+.table-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+  gap: 2rem;
+}
 
 .header-table {
   display: flex;
   justify-content: space-between;
   margin-bottom: 3rem;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .search-bar {
@@ -126,4 +169,26 @@ tfoot th {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.styled-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.styled-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
 }

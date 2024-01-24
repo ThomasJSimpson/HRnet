@@ -1,5 +1,5 @@
-import FormPage from "../pages/FormPage.jsx";
-import EmployeePage from "../pages/EmployeePage.jsx";
+import FormPage from "../components/pages/FormPage.jsx";
+import EmployeePage from "../components/pages/EmployeePage.jsx";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";

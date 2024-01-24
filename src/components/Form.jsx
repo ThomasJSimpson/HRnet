@@ -2,20 +2,20 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addEmployee } from "../slices/employeesSlice";
 import { updateInputFirstName, updateInputLastName, resetInputs, updateInputDateOfBirth, updateInputStartDate, updateInputDepartment, updateInputAddressStreet, updateInputAddressCity, updateInputAddressZip, updateInputAddressState } from "../slices/formSlice";
-import departments from "../data/departments";
-import states from "../data/states";
+import departments from "../data/Form/departments";
+import states from "../data/Form/states";
 import { Modal, useModal } from "react-modal-jkf";
 import "react-modal-jkf/dist/index.css";
 import isDateValid from "../utils/isDateValid";
-import LabelInput from "./common/LabelInput";
-import LabelDatePicker from "./common/LabelDatePicker";
-import LabelSelect from "./common/LabelSelect";
+import LabelInput from "./LabelInput";
+import LabelDatePicker from "./LabelDatePicker";
+import LabelSelect from "./LabelSelect";
 
 export default function Form() {
-  const [reloadKey, setReloadKey] = useState(0);
   const form = useSelector((state) => state.form);
-  const { isShowing, toggle } = useModal();
   const dispatch = useDispatch();
+  const [reloadKey, setReloadKey] = useState(0);
+  const { isShowing, toggle } = useModal();
 
   const handleDateOfBirth = (date) => {
     if (date) {
@@ -40,23 +40,25 @@ export default function Form() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} key={reloadKey} id="create-employee">
-        <LabelInput htmlForId={"first-name"} labelChild={"First Name"} type={"text"} onChange={(e) => dispatch(updateInputFirstName(e.target.value))} value={form.firstName} isRequired={true} />
+      <form className="form-container" onSubmit={handleSubmit} key={reloadKey} id="create-employee">
+        <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field"} labelClassName={"form-field-label"} htmlForId={"first-name"} labelChild={"First Name"} type={"text"} onChange={(e) => dispatch(updateInputFirstName(e.target.value))} value={form.firstName} isRequired={true} />
 
-        <LabelInput htmlForId={"last-name"} labelChild={"Last Name"} type={"text"} onChange={(e) => dispatch(updateInputLastName(e.target.value))} value={form.lastName} isRequired={true} />
+        <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field"} labelClassName={"form-field-label"} htmlForId={"last-name"} labelChild={"Last Name"} type={"text"} onChange={(e) => dispatch(updateInputLastName(e.target.value))} value={form.lastName} isRequired={true} />
 
-        <LabelDatePicker htmlForId={"date-of-birth"} labelChild={"Date of Birth"} onChange={handleDateOfBirth} selected={form.dateOfBirth ? new Date(form.dateOfBirth) : null} isRequired={true} />
+        <LabelDatePicker labelDateClassName={"label-datepicker"} labelClassName={"form-field-label"} htmlForId={"date-of-birth"} labelChild={"Date of Birth"} onChange={handleDateOfBirth} selected={form.dateOfBirth ? new Date(form.dateOfBirth) : null} isRequired={true} options={"showMonthDropdown showYearDropdown scrollableYearDropdown"} />
 
-        <LabelDatePicker htmlForId={"start-date"} labelChild={"Start Date"} onChange={handleStartDate} selected={form.startDate ? new Date(form.startDate) : null} isRequired={true} />
+        <LabelDatePicker labelDateClassName={"label-datepicker"} labelClassName={"form-field-label"} htmlForId={"start-date"} labelChild={"Start Date"} onChange={handleStartDate} selected={form.startDate ? new Date(form.startDate) : null} isRequired={true} />
 
         <fieldset className="address">
           <legend>Address</legend>
 
-          <LabelInput htmlForId={"street"} labelChild={"Street"} type={"text"} onChange={(e) => dispatch(updateInputAddressStreet(e.target.value))} value={form.street} isRequired={true} />
+          <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field"} labelClassName={"form-field-label"} htmlForId={"street"} labelChild={"Street"} type={"text"} onChange={(e) => dispatch(updateInputAddressStreet(e.target.value))} value={form.street} isRequired={true} />
 
-          <LabelInput htmlForId={"city"} labelChild={"City"} type={"text"} onChange={(e) => dispatch(updateInputAddressCity(e.target.value))} value={form.city} isRequired={true} />
+          <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field"} labelClassName={"form-field-label"} htmlForId={"city"} labelChild={"City"} type={"text"} onChange={(e) => dispatch(updateInputAddressCity(e.target.value))} value={form.city} isRequired={true} />
 
           <LabelSelect
+            labelSelectClassName={"label-select"}
+            labelClassName={"form-field-label"}
             htmlForId={"state"}
             labelChild={"State"}
             onChange={(e) => {
@@ -66,10 +68,12 @@ export default function Form() {
             options={states}
           />
 
-          <LabelInput htmlForId={"zip-code"} labelChild={"Zip code"} type={"number"} onChange={(e) => dispatch(updateInputAddressZip(e.target.value))} value={form.zipCode} isRequired={true} />
+          <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field"} labelClassName={"form-field-label"} htmlForId={"zip-code"} labelChild={"Zip code"} type={"number"} onChange={(e) => dispatch(updateInputAddressZip(e.target.value))} value={form.zipCode} isRequired={true} />
         </fieldset>
 
         <LabelSelect
+          labelSelectClassName={"label-select"}
+          labelClassName={"form-field-label"}
           htmlForId={"department"}
           labelChild={"Department"}
           onChange={(e) => {
@@ -79,7 +83,7 @@ export default function Form() {
           options={departments}
         />
 
-        <button className="save-btn" type="submit">
+        <button className="submit-button" type="submit">
           Save
         </button>
       </form>

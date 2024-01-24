@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-const LabelSelect = ({ htmlForId, labelChild, onChange, defaultValue, options }) => {
+const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChild, onChange, defaultValue, options }) => {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -10,12 +10,14 @@ const LabelSelect = ({ htmlForId, labelChild, onChange, defaultValue, options })
       borderRadius: "4px",
       boxShadow: "none",
       height: "20px",
-      width: "100%", // Ajoutez votre largeur ici
+      width: htmlForId === "department" ? "" : "100%",
       backgroundColor: "inehrit",
       ":hover": {
         border: "1px solid black",
       },
+      marginBottom: "20px",
     }),
+
     placeholder: (provided, state) => ({
       ...provided,
       color: "grey",
@@ -37,10 +39,12 @@ const LabelSelect = ({ htmlForId, labelChild, onChange, defaultValue, options })
   };
 
   return (
-    <>
-      <label htmlFor={htmlForId}>{labelChild}</label>
+    <div className={labelSelectClassName}>
+      <label className={labelClassName} htmlFor={htmlForId}>
+        {labelChild}
+      </label>
       <Select styles={customStyles} defaultValue={defaultValue} onChange={onChange} options={options} />
-    </>
+    </div>
   );
 };
 

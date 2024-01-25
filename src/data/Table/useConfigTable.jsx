@@ -23,7 +23,7 @@ const useConfigTable = (columns, data) => {
       onGlobalFilterChange: setGlobalFilter,
       onPaginationChange: setPagination,
     }),
-    [globalFilter, pagination, columns, data]
+    [columns, data, globalFilter, pagination]
   );
 
   const table = useReactTable(tableConfig);

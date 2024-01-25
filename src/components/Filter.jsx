@@ -2,7 +2,9 @@ import React from "react";
 import Input from "./common/Input";
 import Label from "./common/Label";
 
-const Filter = ({ globalFilter, setGlobalFilter }) => {
+const Filter = ({ globalFilter, setGlobalFilter, ...props }) => {
+  console.log("return Filter");
+
   return (
     <div className="filter">
       <Label htmlFor={"filter"} labelChild={"Search :"} />

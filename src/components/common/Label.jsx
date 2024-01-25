@@ -1,4 +1,4 @@
-const Label = ({ className, htmlFor, labelChild }) => {
+const Label = ({ className, htmlFor, labelChild, ...props }) => {
   return (
     <label className={className} htmlFor={htmlFor}>
       {labelChild}

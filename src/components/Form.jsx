@@ -16,7 +16,7 @@ export default function Form() {
   const form = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const [reloadKey, setReloadKey] = useState(0);
-  const { isShowing, toggle } = useModal();
+  const { isShowing, openModal, closeModal } = useModal();
   const currentYear = new Date().getFullYear();
   const isValid = (date) => isDateValid(date, 1900, currentYear);
 
@@ -31,7 +31,7 @@ export default function Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(addEmployee(form));
-    toggle();
+    openModal();
     dispatch(resetInputs());
     setReloadKey((prevKey) => prevKey + 1);
   };
@@ -80,14 +80,11 @@ export default function Form() {
           defaultValue={form.department}
           options={departments}
         />
-        {/* <Button className={"submit-button"} type={"submit"}>
-          Save
-        </Button> */}
+        <Button className={"submit-button"} type={"submit"}>
+          Add employee
+        </Button>
       </form>
-      <Button className={"submit-button"} type={"submit"} onClick={handleSubmit}>
-        Save
-      </Button>
-      <Modal isShowing={isShowing} toggle={toggle} overlayClass={"modal-overlay"} modalClass={"modal"} headerBtnIconClass={"modal-header-btn-icon"} modalHeaderClass={"modal-header"} headerBtnClass={"modal-header-btn"} bodyClass={"modal-body"}>
+      <Modal isShowing={isShowing} closeModal={closeModal} overlayClass={"modal-overlay"} modalClass={"modal"} btnClass={"modal-btn"} bodyClass={"modal-body"}>
         <p>Employee created!</p>
       </Modal>
     </>

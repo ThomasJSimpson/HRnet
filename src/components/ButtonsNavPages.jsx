@@ -26,7 +26,7 @@
 import React from "react";
 import Button from "./common/Button";
 
-const ButtonsNavPages = ({ table }) => {
+const ButtonsNavPages = ({ table, ...props }) => {
   const pageIndex = table.getState().pagination.pageIndex;
   const pageCount = table.getPageCount();
   const buttonCount = 5;
@@ -36,10 +36,11 @@ const ButtonsNavPages = ({ table }) => {
     end = pageCount;
     start = Math.max(end - buttonCount, 0);
   }
+  console.log("return ButtonsNavPages calculated - A lOT");
 
   return (
     <div className="buttons-nav">
-      <p onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()} style={{ fontSize: "16px", cursor: table.getCanPreviousPage() ? "pointer" : "default" }}>
+      <p onClick={() => table.getCanPreviousPage() && table.previousPage()} disabled={!table.getCanPreviousPage()} style={{ fontSize: "16px", cursor: table.getCanPreviousPage() ? "pointer" : "default" }}>
         Prev
       </p>
 
@@ -51,7 +52,7 @@ const ButtonsNavPages = ({ table }) => {
         ))}
       </div>
 
-      <p onClick={() => table.nextPage()} disabled={!table.getCanNextPage()} style={{ fontSize: "16px", cursor: table.getCanNextPage() ? "pointer" : "default" }}>
+      <p onClick={() => table.getCanNextPage() && table.nextPage()} disabled={!table.getCanNextPage()} style={{ fontSize: "16px", cursor: table.getCanNextPage() ? "pointer" : "default" }}>
         Next
       </p>
     </div>

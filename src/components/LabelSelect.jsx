@@ -2,7 +2,7 @@ import React from "react";
 import Select from "react-select";
 import Label from "./common/Label";
 
-const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChild, onChange, defaultValue, options }) => {
+const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChild, onChange, defaultValue, options, ...props }) => {
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -40,7 +40,7 @@ const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChi
   return (
     <div className={labelSelectClassName}>
       <Label className={labelClassName} htmlFor={htmlForId} labelChild={labelChild} />
-      <Select id={htmlForId} styles={customStyles} defaultValue={defaultValue} onChange={onChange} options={options} />
+      <Select id={htmlForId} styles={customStyles} defaultValue={defaultValue} onChange={onChange} options={options} placeholder={props.placeholder} />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Label from "./common/Label";
 
-const LabelDatePicker = ({ labelDateClassName, labelClassName, htmlForId, labelChild, onChange, selected, isRequired }) => {
+const LabelDatePicker = ({ labelDateClassName, labelClassName, htmlForId, labelChild, onChange, selected, isRequired, ...props }) => {
   return (
     <div className={labelDateClassName}>
       <Label className={labelClassName} htmlFor={htmlForId} labelChild={labelChild} />

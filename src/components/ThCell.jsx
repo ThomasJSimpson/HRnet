@@ -1,6 +1,8 @@
 import IconThCell from "./IconThCell";
 
-const ThCell = ({ header, className }) => {
+const ThCell = ({ header, className, ...props }) => {
+  console.log("return ThCell");
+
   return (
     <div className={className}>
       {header.column.columnDef.header}

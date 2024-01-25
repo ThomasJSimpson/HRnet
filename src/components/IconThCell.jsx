@@ -1,6 +1,6 @@
 import { FaSortUp, FaSortDown } from "react-icons/fa";
 
-const IconThCell = ({ header, className }) => {
+const IconThCell = ({ header, className, ...props }) => {
   const isSorted = header.column.getIsSorted();
   let colorUp, colorDown;
 

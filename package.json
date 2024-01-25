@@ -1,6 +1,9 @@
 {
   "name": "wealth-health",
   "version": "0.1.0",
+  "description": "A react modal component",
+  "author": "ThomasJSimpson",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
@@ -9,7 +12,7 @@
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
-    "react-modal-jkf": "^1.0.3",
+    "react-modal-jkf": "^1.0.5",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
@@ -20,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "serve -s build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "serve": "^14.2.1"
   }
 }

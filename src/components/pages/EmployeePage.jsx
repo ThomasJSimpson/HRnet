@@ -6,7 +6,7 @@ import columnsData from "../../data/Table/columnsData";
 const EmployeePage = () => {
   const employees = useSelector((state) => state.employees);
 
-  console.log("rendu dans EmployeePage");
+  console.log("rendu dans EmployeePage table+link");
 
   return (
     <div className="table-page">
@@ -24,18 +24,3 @@ const EmployeePage = () => {
 };
 
 export default EmployeePage;
-// {
-//   "src": "favicon.ico",
-//   "sizes": "64x64 32x32 24x24 16x16",
-//   "type": "image/x-icon"
-// },
-// {
-//   "src": "logo192.png",
-//   "type": "image/png",
-//   "sizes": "192x192"
-// },
-// {
-//   "src": "logo512.png",
-//   "type": "image/png",
-//   "sizes": "512x512"
-// }

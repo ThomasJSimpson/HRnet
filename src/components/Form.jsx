@@ -50,9 +50,9 @@ export default function Form() {
         <fieldset className="address">
           <legend>Address</legend>
 
-          <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field"} labelClassName={"form-field-label"} htmlForId={"street"} labelChild={"Street"} type={"text"} onChange={(e) => dispatch(updateInputAddressStreet(e.target.value))} value={form.street} isRequired={true} />
+          <LabelInput labelInputClassName={"label-input-address"} inputClassName={"form-field-adress"} labelClassName={"form-field-label"} htmlForId={"street"} labelChild={"Street"} type={"text"} onChange={(e) => dispatch(updateInputAddressStreet(e.target.value))} value={form.street} isRequired={true} />
 
-          <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field"} labelClassName={"form-field-label"} htmlForId={"city"} labelChild={"City"} type={"text"} onChange={(e) => dispatch(updateInputAddressCity(e.target.value))} value={form.city} isRequired={true} />
+          <LabelInput labelInputClassName={"label-input"} inputClassName={"form-field-adress"} labelClassName={"form-field-label"} htmlForId={"city"} labelChild={"City"} type={"text"} onChange={(e) => dispatch(updateInputAddressCity(e.target.value))} value={form.city} isRequired={true} />
 
           <LabelSelect
             labelSelectClassName={"label-select"}
@@ -80,11 +80,13 @@ export default function Form() {
           defaultValue={form.department}
           options={departments}
         />
-        <Button className={"submit-button"} type={"submit"}>
+        {/* <Button className={"submit-button"} type={"submit"}>
           Save
-        </Button>
+        </Button> */}
       </form>
-
+      <Button className={"submit-button"} type={"submit"} onClick={handleSubmit}>
+        Save
+      </Button>
       <Modal isShowing={isShowing} toggle={toggle} overlayClass={"modal-overlay"} modalClass={"modal"} headerBtnIconClass={"modal-header-btn-icon"} modalHeaderClass={"modal-header"} headerBtnClass={"modal-header-btn"} bodyClass={"modal-body"}>
         <p>Employee created!</p>
       </Modal>

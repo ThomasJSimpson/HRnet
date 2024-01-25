@@ -29,20 +29,51 @@ p {
 .label-select {
   margin-bottom: 20px;
 }
-
+.label-input-address {
+  width: 100%;
+}
 .title {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
-.container {
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 400px;
+}
+.form-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
+.title {
+  margin-bottom: 2rem;
+}
+
+.employee-list-link {
+  text-decoration: none;
+  font-size: 20px;
+  color: inherit;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.employee-list-link:hover {
+  text-decoration: underline;
+}
+.form-title {
+  margin-bottom: 1rem;
+}
 label {
   display: block;
   margin-top: 1rem;
@@ -74,6 +105,9 @@ input {
   width: 300px;
 }
 
+.form-field {
+  /* width: 100%; */
+}
 .form-field-label {
   font-size: 16px;
   font-weight: bold;
@@ -113,13 +147,22 @@ input {
   padding-top: 3rem;
   gap: 2rem;
 }
-.table-page-link {
+.table-page-link-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+.table-page-link {
+  font-size: 18px;
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.table-page-link:hover {
+  text-decoration: underline;
+  font-weight: bold;
 }
 .table-container {
   display: flex;

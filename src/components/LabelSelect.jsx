@@ -4,7 +4,7 @@ import Label from "./common/Label";
 
 const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChild, onChange, defaultValue, options }) => {
   const customStyles = {
-    control: (provided, state) => ({
+    control: (provided) => ({
       ...provided,
       color: "black",
       border: "1px solid black",
@@ -18,22 +18,22 @@ const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChi
       },
     }),
 
-    placeholder: (provided, state) => ({
+    placeholder: (provided) => ({
       ...provided,
       color: "grey",
     }),
-    dropdownIndicator: (provided, state) => ({
+    dropdownIndicator: (provided) => ({
       ...provided,
       color: "black",
     }),
-    indicatorSeparator: (provided, state) => ({
+    indicatorSeparator: (provided) => ({
       ...provided,
       backgroundColor: "black",
       display: "none",
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? "#0C8E0C" : state.isFocused ? "#0FBF0F" : "#fff",
+      backgroundColor: state.isSelected ? "gray" : state.isFocused ? "lightgray" : "#fff",
       color: state.isSelected ? "#fff" : state.isFocused ? "#fff" : "black",
     }),
   };

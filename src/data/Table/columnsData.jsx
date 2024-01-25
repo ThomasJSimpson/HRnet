@@ -1,5 +1,4 @@
 import isoToDateToStringConverter from "../../utils/isoToDateToStringConverter";
-import { useMemo } from "react";
 const columns = [
   { title: "First Name", data: "firstName" },
   { title: "Last Name", data: "lastName" },

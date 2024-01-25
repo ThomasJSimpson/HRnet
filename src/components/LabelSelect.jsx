@@ -11,8 +11,9 @@ const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChi
       borderRadius: "4px",
       boxShadow: "none",
       height: "20px",
-      width: htmlForId === "department" ? "218px" : "100%",
-      backgroundColor: "inehrit",
+      width: htmlForId === "page-size" ? "80px" : "218px",
+      maxWidth: "218px",
+      backgroundColor: "inherit",
       ":hover": {
         border: "1px solid black",
       },
@@ -33,8 +34,8 @@ const LabelSelect = ({ labelSelectClassName, labelClassName, htmlForId, labelChi
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? "gray" : state.isFocused ? "lightgray" : "#fff",
-      color: state.isSelected ? "#fff" : state.isFocused ? "#fff" : "black",
+      backgroundColor: state.isSelected ? "#4caf50" : state.isFocused ? "#cef0cf" : "#fff",
+      color: state.isSelected ? "#fff" : state.isFocused ? "black" : "black",
     }),
   };
   return (

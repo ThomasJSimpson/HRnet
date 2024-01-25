@@ -1,28 +1,3 @@
-// import React from "react";
-
-// import Button from "./common/Button";
-
-// const ButtonsNavPages = ({ table }) => {
-//   return (
-//     <div className="buttons-nav">
-//       <p onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()} style={{ cursor: table.getCanPreviousPage() ? "pointer" : "default" }}>
-//         Previous
-//       </p>
-//       <div className="button-container">
-//         {Array.from({ length: table.getPageCount() }, (_, i) => (
-//           <Button key={i} onClick={() => table.setPageIndex(i)} isDisabled={table.getState().pagination.pageIndex === i}>
-//             {i + 1}
-//           </Button>
-//         ))}
-//       </div>
-
-//       <p onClick={() => table.nextPage()} disabled={!table.getCanNextPage()} style={{ cursor: table.getCanNextPage() ? "pointer" : "default" }}>
-//         Next
-//       </p>
-//     </div>
-//   );
-// };
-// export default ButtonsNavPages;
 import React from "react";
 import Button from "./common/Button";
 

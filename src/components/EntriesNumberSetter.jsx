@@ -9,7 +9,7 @@ const EntriesNumberSetter = ({ table, ...props }) => {
   const pageSize = table.getState().pagination.pageSize;
   console.log("return EntriesNumberSetter calculated");
 
-  return <LabelSelect defaultValue={pageSize} labelSelectClassName={"page-size"} htmlFor={"page-size"} onChange={(e) => table.setPageSize(e.value)} labelChild={"Page Size :"} options={options} placeholder={pageSize} />;
+  return <LabelSelect defaultValue={pageSize} labelSelectClassName={"page-size"} htmlForId={"page-size"} onChange={(e) => table.setPageSize(e.value)} labelChild={"Page Size :"} options={options} placeholder={pageSize} />;
 };
 
 export default EntriesNumberSetter;

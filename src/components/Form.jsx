@@ -84,7 +84,7 @@ export default function Form() {
           Add employee
         </Button>
       </form>
-      <Modal isShowing={isShowing} closeModal={closeModal} overlayClass={"modal-overlay"} modalClass={"modal"} btnClass={"modal-btn"} bodyClass={"modal-body"}>
+      <Modal isShowing={isShowing} closeModal={closeModal}>
         <p>Employee created!</p>
       </Modal>
     </>

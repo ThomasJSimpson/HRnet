@@ -4,12 +4,12 @@ import { addEmployee } from "../slices/employeesSlice";
 import { updateInputFirstName, updateInputLastName, resetInputs, updateInputDateOfBirth, updateInputStartDate, updateInputDepartment, updateInputAddressStreet, updateInputAddressCity, updateInputAddressZip, updateInputAddressState } from "../slices/formSlice";
 import departments from "../data/Form/departments";
 import states from "../data/Form/states";
-import { Modal, useModal } from "react-modal-jkf";
-import "react-modal-jkf/dist/index.css";
 import isDateValid from "../utils/isDateValid";
 import LabelInput from "./LabelInput";
 import LabelDatePicker from "./LabelDatePicker";
 import LabelSelect from "./LabelSelect";
+import { Modal, useModal } from "react-modal-jkf";
+import "react-modal-jkf/dist/index.css";
 import Button from "./common/Button";
 
 export default function Form() {

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import mockedData from "../data/Table/mockedData.js";
-// import employees from "../data/Table/mockedData.js";
 
 const initialState = JSON.parse(localStorage.getItem("employees")) || mockedData;
 export const employeesSlice = createSlice({

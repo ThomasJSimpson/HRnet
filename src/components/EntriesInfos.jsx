@@ -1,5 +1,4 @@
 const EntriesInfos = ({ table, ...props }) => {
-  console.log("return EntriesInfos calculated");
   return (
     <div className="entries-info">
       <p>

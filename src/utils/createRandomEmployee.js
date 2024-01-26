@@ -1,6 +1,6 @@
 function getRandomDate(start, end) {
   let date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-  return date.toISOString().split("T")[0]; // Format YYYY-MM-DD
+  return date.toISOString().split("T")[0];
 }
 
 function getRandomElement(array) {

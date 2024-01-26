@@ -11,7 +11,6 @@ const ButtonsNavPages = ({ table, ...props }) => {
     end = pageCount;
     start = Math.max(end - buttonCount, 0);
   }
-  console.log("return ButtonsNavPages calculated - A lOT");
 
   return (
     <div className="buttons-nav">

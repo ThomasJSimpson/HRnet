@@ -10,7 +10,6 @@ function Table({ employeesData, columns, ...props }) {
   const data = useMemo(() => employeesData, [employeesData]);
   const tableColumns = useMemo(() => columns, [columns]);
   const { table, globalFilter, setGlobalFilter, flexRender } = useConfigTable(tableColumns, data);
-  console.log("return Table");
 
   return (
     <div className="full-table">

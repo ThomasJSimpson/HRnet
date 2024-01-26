@@ -6,8 +6,6 @@ import columnsData from "../../data/Table/columnsData";
 const EmployeePage = () => {
   const employees = useSelector((state) => state.employees);
 
-  console.log("rendu dans EmployeePage table+link");
-
   return (
     <div className="table-page">
       <h1>Current Employees</h1>
